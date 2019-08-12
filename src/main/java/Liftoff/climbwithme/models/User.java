@@ -1,11 +1,10 @@
 package Liftoff.climbwithme.models;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.List;
 
 @Entity
 public class User {
@@ -27,6 +26,9 @@ public class User {
 
     @NotNull(message = "Passwords do not match!")
     private String verifyPassword;
+
+    @ManyToOne
+    private List<Post> posts;
 
     public User(String username, CharSequence email, String password) {
         this.username = username;
@@ -79,5 +81,13 @@ public class User {
 
     public void setVerifyPassword(String verifyPassword) {
         this.verifyPassword = verifyPassword;
+    }
+
+    public List<Post> getPosts() {
+        return posts;
+    }
+
+    public void setPosts(List<Post> posts) {
+        this.posts = posts;
     }
 }
