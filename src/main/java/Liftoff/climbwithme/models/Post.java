@@ -9,8 +9,7 @@ public class Post {
     @GeneratedValue
     private int id;
 
-    @OneToMany
-    @JoinColumn(name = "post_id")
+    @ManyToOne
     private User user;
 
     @NotNull
