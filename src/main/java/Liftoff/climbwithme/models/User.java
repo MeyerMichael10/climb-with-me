@@ -14,7 +14,7 @@ public class User {
     private int id;
 
     @Email
-    private CharSequence email;
+    private String email;
 
     @NotNull
     @Size(min=3, max=15, message = "Username must be between 3 and 15 characters!")
@@ -27,10 +27,11 @@ public class User {
     @NotNull(message = "Passwords do not match!")
     private String verifyPassword;
 
-    @ManyToOne
+    @OneToMany
+    @JoinColumn(name="post_id")
     private List<Post> posts;
 
-    public User(String username, CharSequence email, String password) {
+    public User(String username, String email, String password) {
         this.username = username;
         this.email = email;
         this.password = password;
@@ -55,7 +56,7 @@ public class User {
         return email;
     }
 
-    public void setEmail(CharSequence email) {
+    public void setEmail(String email) {
         this.email = email;
     }
 
