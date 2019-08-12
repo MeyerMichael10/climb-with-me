@@ -1,8 +1,5 @@
 package Liftoff.climbwithme.models;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 @Entity
@@ -13,6 +10,7 @@ public class Post {
     private int id;
 
     @OneToMany
+    @JoinColumn(name = "post_id")
     private User user;
 
     @NotNull
