@@ -31,10 +31,15 @@ public class User {
     @JoinColumn(name="post_id")
     private List<Post> posts;
 
+    @NotNull
+    @ManyToOne
+    private String role;
+
     public User(String username, String email, String password) {
         this.username = username;
         this.email = email;
         this.password = password;
+        this.role = "USER"; //setting all users as USER, add ADMIN role later?
     }
 
     public User() {
@@ -90,5 +95,13 @@ public class User {
 
     public void setPosts(List<Post> posts) {
         this.posts = posts;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setUserRole(String userRole) {
+        this.role = userRole;
     }
 }
