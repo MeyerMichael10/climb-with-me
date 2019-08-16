@@ -32,7 +32,7 @@ public class User {
     private List<Post> posts;
 
     @NotNull
-    @ManyToOne
+    @ManyToMany
     private String role;
 
     public User(String username, String email, String password) {
@@ -101,7 +101,7 @@ public class User {
         return role;
     }
 
-    public void setUserRole(String userRole) {
-        this.role = userRole;
+    public void setRole(String role) {
+        this.role = role;
     }
 }

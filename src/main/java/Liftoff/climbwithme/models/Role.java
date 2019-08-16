@@ -3,9 +3,11 @@ package Liftoff.climbwithme.models;
 import Liftoff.climbwithme.models.User;
 
 import javax.persistence.GeneratedValue;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
 import java.util.List;
+import java.util.Set;
 
 public class Role {
 
@@ -14,8 +16,8 @@ public class Role {
     private Integer roleId;
 
     @NotNull
-    @OneToMany(mappedBy = "role")
-    private List<User> users;
+    @ManyToMany(mappedBy = "roles")
+    private Set<User> users;
 
     @NotNull
     private String role;
@@ -31,7 +33,7 @@ public class Role {
         return roleId;
     }
 
-    public List<User> getUsers() {
+    public Set<User> getUsers() {
         return users;
     }
 
