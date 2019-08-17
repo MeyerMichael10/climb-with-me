@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <meta http-equiv="Content-Type"
           content="text/html; charset=UTF-8" />
@@ -7,6 +7,10 @@
     <title></title>
 </head>
 <body>
+<div sec:authorize="isAuthenticated()">
+    Welcome, <span sec:authentication="username">Username</span>
+</div>
+
 
 <h1>Climb With Me!</h1>
 <a href="/user/login">Log In</a>

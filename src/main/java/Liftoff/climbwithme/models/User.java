@@ -5,6 +5,7 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 public class User {
@@ -31,15 +32,13 @@ public class User {
     @JoinColumn(name="post_id")
     private List<Post> posts;
 
-    @NotNull
     @ManyToMany
-    private String role;
+    private Set<Role> roles;
 
     public User(String username, String email, String password) {
         this.username = username;
         this.email = email;
         this.password = password;
-        this.role = "USER"; //setting all users as USER, add ADMIN role later?
     }
 
     public User() {
@@ -97,11 +96,11 @@ public class User {
         this.posts = posts;
     }
 
-    public String getRole() {
-        return role;
+    public Set<Role> getRoles() {
+        return roles;
     }
 
-    public void setRole(String role) {
-        this.role = role;
+    public void setRoles(Set<Role> roles) {
+        this.roles = roles;
     }
 }
