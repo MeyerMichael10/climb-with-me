@@ -34,7 +34,7 @@ public class UserController {
     }
 
     @RequestMapping(value = "signup", method = RequestMethod.POST)
-    public String add(Model model, @ModelAttribute @Valid User user,
+    public String signup(Model model, @ModelAttribute @Valid User user,
                       Errors errors, String verify) {
         if (errors.hasErrors()) {
             return "user/signup";
@@ -51,10 +51,6 @@ public class UserController {
     public String login(Model model, String error, String logout) {
         if (error != null){
             model.addAttribute("error", "Your username or password is incorrect!");
-        }
-
-        if (logout != null) {
-            model.addAttribute("message", "You have been logged out succesfully");
         }
 
         return "user/login";
