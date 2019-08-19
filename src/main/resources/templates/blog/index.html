@@ -15,8 +15,16 @@
 
 <h1>Climb With Me!</h1>
 <a th:unless="${user}" href="/login">Log In/Sign Up</a>
+<a th:if="${user}" href="/newPost">New Post</a>
 <h3>Recent Blog Posts:</h3>
-<p>Coming Soon!</p>
+<table th:each="post : ${posts}" class="table">
+    <tr>
+        <th th:text="${post.user}">User</th>
+    </tr>
+    <tr>
+        <td th:text="${post.body}">Post Body</td>
+    </tr>
+</table>
 <h3>Partner Requests:</h3>
 <p>Coming Soon!</p>
 

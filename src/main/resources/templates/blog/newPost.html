@@ -6,5 +6,15 @@
 </head>
 <body>
 
+<form method="post" style="max-width:600px;" th:object="${post}" action="/newPost">
+    <div class="form-group">
+        <label th:for="body">Post body:</label>
+        <input class="form-control" th:field="*{body}" />
+        <span th:errors="*{body}" class="error"></span>
+    </div>
+
+    <input type="submit" value="Add Post" />
+</form>
+
 </body>
 </html>

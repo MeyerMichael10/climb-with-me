@@ -9,7 +9,8 @@ public class Post {
     @GeneratedValue
     private int id;
 
-
+    @NotNull
+    private String user;
 
     @NotNull
     private String body;
@@ -22,6 +23,13 @@ public class Post {
         return id;
     }
 
+    public String getUser() {
+        return user;
+    }
+
+    public void setUser(String user) {
+        this.user = user;
+    }
 
     public String getBody() {
         return body;
