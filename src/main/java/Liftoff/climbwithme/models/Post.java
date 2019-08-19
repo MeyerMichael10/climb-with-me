@@ -9,16 +9,11 @@ public class Post {
     @GeneratedValue
     private int id;
 
-    @ManyToOne
-    private User user;
+
 
     @NotNull
     private String body;
 
-    public Post(User user, String body) {
-        this.user = user;
-        this.body = body;
-    }
 
     public Post() {
     }
@@ -27,9 +22,6 @@ public class Post {
         return id;
     }
 
-    public User getUser() {
-        return user;
-    }
 
     public String getBody() {
         return body;

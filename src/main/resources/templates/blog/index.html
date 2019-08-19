@@ -7,14 +7,14 @@
     <title></title>
 </head>
 <body>
-<div sec:authorize="isAuthenticated()">
-    Welcome, <span sec:authentication="username">Username</span>
+
+<div th:if="${user}">
+    <p>Welcome,</p>
+    <p th:text="${user}" />
 </div>
 
-
 <h1>Climb With Me!</h1>
-<a href="/user/login">Log In</a>
-<a href="/user/signup">Sign Up</a>
+<a th:unless="${user}" href="/login">Log In/Sign Up</a>
 <h3>Recent Blog Posts:</h3>
 <p>Coming Soon!</p>
 <h3>Partner Requests:</h3>
