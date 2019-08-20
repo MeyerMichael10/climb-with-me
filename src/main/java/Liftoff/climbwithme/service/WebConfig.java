@@ -14,5 +14,8 @@ class WebConfig extends WebSecurityConfigurerAdapter {
                 .anyRequest().authenticated()
                 .and().oauth2Client()
                 .and().oauth2Login();
+
+                http.csrf().disable();
+                http.cors().disable();
     }
 }
