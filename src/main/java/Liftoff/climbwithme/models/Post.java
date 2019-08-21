@@ -9,7 +9,6 @@ public class Post {
     @GeneratedValue
     private int id;
 
-    @NotNull
     private String user;
 
     @NotNull

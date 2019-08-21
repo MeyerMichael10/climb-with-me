@@ -13,10 +13,7 @@ import org.springframework.security.oauth2.core.oidc.user.OidcUser;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.security.Principal;
@@ -42,7 +39,6 @@ public class BlogController{
     }
 
     @RequestMapping(value = "newPost", method = RequestMethod.GET)
-    @PreAuthorize("hasAuthority('SCOPE_profile')")
     public String newPost(Model model, @AuthenticationPrincipal OidcUser user) {
         model.addAttribute(new Post());
         model.addAttribute("user", user);
@@ -51,16 +47,17 @@ public class BlogController{
     }
 
     @RequestMapping(value = "newPost", method = RequestMethod.POST)
-    @PreAuthorize("hasAuthority('SCOPE_profile')")
     public String newPost(@ModelAttribute @Valid Post newPost,
-                          Errors errors, @RequestParam @AuthenticationPrincipal OidcUser user, Model model) {
-        if (errors.hasErrors()) {
-            return "blog/index";
-        }
+                          Errors errors, @AuthenticationPrincipal OidcUser user, Model model) {
         newPost.setUser(user.getEmail());
+
+        if (errors.hasErrors()) {
+            return "blog/newPost";
+        }
+
         postDao.save(newPost);
 
-        return "redirect:/blog/index";
+        return "redirect:/";
     }
 
 }
