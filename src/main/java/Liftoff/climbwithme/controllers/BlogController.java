@@ -33,6 +33,8 @@ public class BlogController{
         if (user != null) {
             model.addAttribute("user", user.getName());
         }
+
+        model.addAttribute("posts", postDao.findAll());
         model.addAttribute("message", message);
 
         return "blog/index";
