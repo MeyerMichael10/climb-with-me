@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title></title>
+</head>
+<body>
+
+<form method="post" style="max-width:600px;" th:object="${partnerReq}" action="/newPartnerReq">
+    <div class="form-group">
+        <label th:for="discipline">Preferred discipline:</label>
+        <input class="form-control" th:field="*{discipline}" />
+        <span th:errors="*{discipline}" class="error"></span>
+    </div>
+
+    <div class="form-group">
+        <label th:for="city">City:</label>
+        <input class="form-control" th:field="*{city}" />
+        <span th:errors="*{city}" class="error"></span>
+    </div>
+
+    <input type="submit" value="Add Partner Request" />
+</form>
+
+</body>
+</html>

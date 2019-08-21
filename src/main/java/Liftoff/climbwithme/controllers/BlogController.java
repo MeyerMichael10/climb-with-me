@@ -1,6 +1,8 @@
 package Liftoff.climbwithme.controllers;
 
+import Liftoff.climbwithme.models.PartnerReq;
 import Liftoff.climbwithme.models.Post;
+import Liftoff.climbwithme.models.data.PartnerReqDao;
 import Liftoff.climbwithme.models.data.PostDao;
 import com.nimbusds.oauth2.sdk.token.AccessToken;
 import com.nimbusds.openid.connect.sdk.claims.UserInfo;
@@ -25,6 +27,9 @@ public class BlogController{
     @Autowired
     private PostDao postDao;
 
+    @Autowired
+    private PartnerReqDao partnerReqDao;
+
     @RequestMapping(value="")
     public String index(Model model, @AuthenticationPrincipal OidcUser user) {
 
@@ -35,6 +40,7 @@ public class BlogController{
         }
 
         model.addAttribute("posts", postDao.findAll());
+        model.addAttribute("partnerReqs", partnerReqDao.findAll());
         model.addAttribute("message", message);
 
         return "blog/index";
@@ -58,6 +64,28 @@ public class BlogController{
         }
 
         postDao.save(newPost);
+
+        return "redirect:/";
+    }
+
+    @RequestMapping(value = "newPartnerReq")
+    public String newPartnerReq(Model model, @AuthenticationPrincipal OidcUser user) {
+        model.addAttribute(new PartnerReq());
+        model.addAttribute("user", user);
+
+        return "requests/newPartnerReq";
+    }
+
+    @RequestMapping(value = "newPartnerReq", method = RequestMethod.POST)
+    public String newPartnerReq(@ModelAttribute @Valid PartnerReq newPartnerReq,
+                          Errors errors, @AuthenticationPrincipal OidcUser user, Model model) {
+        newPartnerReq.setUser(user.getEmail());
+
+        if (errors.hasErrors()) {
+            return "requests/newPartnerReq";
+        }
+
+        partnerReqDao.save(newPartnerReq);
 
         return "redirect:/";
     }

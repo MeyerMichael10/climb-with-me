@@ -16,6 +16,7 @@
 <h1>Climb With Me!</h1>
 <a th:unless="${user}" href="/login">Log In/Sign Up</a>
 <a th:if="${user}" href="/newPost">New Post</a>
+<a th:if="${user}" href="/newPartnerReq">New Partner Request</a>
 <h3>Recent Blog Posts:</h3>
 <table th:each="post : ${posts}" class="table">
     <tr>
@@ -26,7 +27,19 @@
     </tr>
 </table>
 <h3>Partner Requests:</h3>
-<p>Coming Soon!</p>
+<table th:each="partnerReq : ${partnerReqs}" class="table">
+    <tr>
+        <th>User</th>
+        <th>Discipline</th>
+        <th>City</th>
+    </tr>
+    <tr>
+        <td th:text="${partnerReq.user}">User</td>
+        <td th:text="${partnerReq.discipline}">Discipline</td>
+        <td th:text="${partnerReq.city}">City</td>
+
+    </tr>
+</table>
 
 </body>
 </html>

@@ -1,15 +1,31 @@
 package Liftoff.climbwithme.models;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.validation.constraints.NotNull;
 
 @Entity
 public class PartnerReq {
 
+    @Id
+    @GeneratedValue
+    private int id;
+
     private String user;
 
+    @NotNull
     private String discipline;
 
+    @NotNull
     private String city;
+
+    public PartnerReq() {
+    }
+
+    public int getId() {
+        return id;
+    }
 
     public String getUser() {
         return user;
