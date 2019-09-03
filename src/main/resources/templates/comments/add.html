@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title></title>
+</head>
+<body>
+
+<form method="post" style="max-width:600px;" th:object="${comment}" action="/comments/add">
+    <div class="form-group">
+        <label th:for="body">Post body:</label>
+        <input class="form-control" th:field="*{body}" />
+        <span th:errors="*{body}" class="error"></span>
+        <span th:errors="*{parent}" class="error"></span>
+    </div>
+
+    <input type="hidden" th:field="*{parent}" name="parent" />
+    <input type="submit" value="Submit Comment" />
+</form>
+
+</body>
+</html>

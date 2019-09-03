@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title></title>
+</head>
+<body>
+<a href="/">home</a>
+
+<table th:object="${post}" class="table">
+    <h2 th:text="${post.user}">Parent User</h2>
+    <p th:text="${post.body}">Parent Body</p>
+    <a th:href="@{'/comments/add/' + ${post.id}}">Add Comment</a>
+</table>
+
+<div th:if="${relevantComments}">
+    <table th:each="comment : ${relevantComments}" class="table">
+        <tr>
+            <th th:text="${comment.user}"></th>
+        </tr>
+        <tr>
+            <td th:text="${comment.body}"></td>
+        </tr>
+</table>
+</div>
+
+<div th:unless="${relevantComments}">
+    <h4>No Comments Yet!</h4>
+</div>
+
+</body>
+</html>

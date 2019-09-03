@@ -25,6 +25,9 @@
     <tr>
         <td th:text="${post.body}">Post Body</td>
     </tr>
+    <td>
+        <a th:href="@{'/comments/view/' + ${post.id}}" th:text="Comments">Comments</a>
+    </td>
 </table>
 <h3>Partner Requests:</h3>
 <table th:each="partnerReq : ${partnerReqs}" class="table">

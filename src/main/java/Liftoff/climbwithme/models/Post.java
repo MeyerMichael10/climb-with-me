@@ -1,6 +1,7 @@
 package Liftoff.climbwithme.models;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.List;
 
 @Entity
 public class Post {
@@ -13,6 +14,10 @@ public class Post {
 
     @NotNull
     private String body;
+
+    @OneToMany
+    @JoinColumn(name = "post_id")
+    private List<Comment> comments;
 
 
     public Post() {
