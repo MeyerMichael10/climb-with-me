@@ -33,15 +33,12 @@ public class BlogController{
     @RequestMapping(value="")
     public String index(Model model, @AuthenticationPrincipal OidcUser user) {
 
-        String message = "Hello World";
-
         if (user != null) {
-            model.addAttribute("user", user.getName());
+            model.addAttribute("user", user);
         }
 
         model.addAttribute("posts", postDao.findAll());
         model.addAttribute("partnerReqs", partnerReqDao.findAll());
-        model.addAttribute("message", message);
 
         return "blog/index";
     }

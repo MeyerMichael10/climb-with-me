@@ -3,6 +3,8 @@ package Liftoff.climbwithme.models;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.validation.constraints.NotNull;
 
 @Entity
 public class Message {
@@ -12,16 +14,21 @@ public class Message {
     @GeneratedValue
     private int id;
 
-    //user
     private String user;
 
     //recipient
+    @NotNull(message = "Who do you want to send this to?")
     private String recipient;
 
     //body
+    @NotNull(message = "Message can't be blank!")
     private String body;
 
     public Message() {
+    }
+
+    public Message(String recipient) {
+        this.recipient = recipient;
     }
 
     public int getId() {

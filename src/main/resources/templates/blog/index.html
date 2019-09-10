@@ -7,16 +7,18 @@
     <title></title>
 </head>
 <body>
-
+<a href="https://dev-188996.okta.com/enduser/settings">Edit Profile</a>
+<a href="/logout">Log Out</a>
 <div th:if="${user}">
     <p>Welcome,</p>
-    <p th:text="${user}" />
+    <p th:text="${user.email}" />
 </div>
 
 <h1>Climb With Me!</h1>
 <a th:unless="${user}" href="/login">Log In/Sign Up</a>
 <a th:if="${user}" href="/newPost">New Post</a>
 <a th:if="${user}" href="/newPartnerReq">New Partner Request</a>
+<a th:if="${user}" href="/messages/view-all">Messages</a>
 <h3>Recent Blog Posts:</h3>
 <table th:each="post : ${posts}" class="table">
     <tr>
@@ -41,6 +43,11 @@
         <td th:text="${partnerReq.discipline}">Discipline</td>
         <td th:text="${partnerReq.city}">City</td>
 
+    </tr>
+    <tr>
+        <td>
+            <a th:href="@{'/messages/respond/' + ${partnerReq.user}}">Respond</a>
+        </td>
     </tr>
 </table>
 
