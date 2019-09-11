@@ -4,13 +4,8 @@ import Liftoff.climbwithme.models.PartnerReq;
 import Liftoff.climbwithme.models.Post;
 import Liftoff.climbwithme.models.data.PartnerReqDao;
 import Liftoff.climbwithme.models.data.PostDao;
-import com.nimbusds.oauth2.sdk.token.AccessToken;
-import com.nimbusds.openid.connect.sdk.claims.UserInfo;
-import com.okta.spring.boot.oauth.Okta;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.security.oauth2.core.OAuth2AccessToken;
 import org.springframework.security.oauth2.core.oidc.user.OidcUser;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,7 +13,6 @@ import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.security.Principal;
 
 @Controller
 @RequestMapping("/")
