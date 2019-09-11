@@ -29,7 +29,7 @@ public class MessageController {
     public String viewAll(Model model, @AuthenticationPrincipal OidcUser user) {
 
         Iterable<Message> allMessages = messageDao.findAll();
-        Iterable<Message> messages = messageDao.findAllByRecipient(user.getEmail());
+        Iterable<Message> messages = messageDao.findAllByRecipient(user.getNickName());
 
         model.addAttribute("user", user);
         model.addAttribute("messages", messages);
@@ -50,7 +50,7 @@ public class MessageController {
     public String newMessage(@ModelAttribute @Valid Message message, Errors errors,
                              @AuthenticationPrincipal OidcUser user, Model model) {
 
-        message.setUser(user.getEmail());
+        message.setUser(user.getNickName());
 
         if (errors.hasErrors()) {
             return "messages/new";
@@ -78,7 +78,7 @@ public class MessageController {
     public String newRespond(@ModelAttribute @Valid Message message, Errors errors,
                              @AuthenticationPrincipal OidcUser user, Model model) {
 
-        message.setUser(user.getEmail());
+        message.setUser(user.getNickName());
 
         if (errors.hasErrors()) {
             return "messages/respond";

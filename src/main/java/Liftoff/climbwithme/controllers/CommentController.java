@@ -65,7 +65,7 @@ public class CommentController {
                              Model model) {
 
         Post post = comment.getParent();
-        comment.setUser(user.getEmail());
+        comment.setUser(user.getNickName());
         model.addAttribute("post", post);
 
         if (errors.hasErrors()) {
