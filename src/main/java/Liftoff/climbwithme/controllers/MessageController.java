@@ -2,7 +2,6 @@ package Liftoff.climbwithme.controllers;
 
 import Liftoff.climbwithme.models.Message;
 import Liftoff.climbwithme.models.data.MessageDao;
-import org.ietf.jgss.Oid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.oauth2.core.oidc.user.OidcUser;
@@ -15,8 +14,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.validation.Valid;
-import java.nio.file.Path;
-import java.util.List;
 
 @Controller
 @RequestMapping("/messages")
