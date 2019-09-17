@@ -39,6 +39,7 @@ public class CommentController {
 
         Iterable<Comment> relevantComments = commentDao.findAllByParentId(postId);
 
+        model.addAttribute("user", user);
         model.addAttribute("post", post);
         model.addAttribute("parentUser", post.getUser());
         model.addAttribute("relevantComments", relevantComments);
@@ -55,6 +56,7 @@ public class CommentController {
 
         model.addAttribute(new Comment(post));
         model.addAttribute("parent", post);
+        model.addAttribute("user", user);
 
         return "comments/add";
     }
@@ -69,9 +71,10 @@ public class CommentController {
         model.addAttribute("post", post);
 
         if (errors.hasErrors()) {
+            model.addAttribute("user", user);
             return "comments/add";
         }
-
+        model.addAttribute("user", user);
         commentDao.save(comment);
 
         return "redirect:/comments/view/" + post.getId();

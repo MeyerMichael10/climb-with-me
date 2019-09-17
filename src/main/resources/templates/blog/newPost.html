@@ -1,19 +1,23 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8"/>
-    <title></title>
+    <head th:replace="fragments :: head">
+    </head>
 </head>
 <body>
 
-<form method="post" style="max-width:600px;" th:object="${post}" action="/newPost">
+<nav th:replace="fragments :: nav"></nav>
+
+<form method="post" th:object="${post}" action="/newPost">
     <div class="form-group">
-        <label th:for="body">Post body:</label>
-        <input class="form-control" th:field="*{body}" />
-        <span th:errors="*{body}" class="error"></span>
+        <label th:for="body" class="col-lg-1">Post body:</label>
+        <div class="col-lg-3">
+            <textarea class="form-control" rows="4" th:field="*{body}" />
+            <span th:errors="*{body}" class="error"></span>
+        </div>
     </div>
 
-    <input type="submit" value="Add Post" />
+    <input type="submit" class="btn btn-success" value="Add Post" />
 </form>
 
 </body>

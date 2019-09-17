@@ -1,27 +1,35 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8"/>
-    <title></title>
+<head th:replace="fragments :: head">
 </head>
 <body>
-<a href="/">home</a>
+<nav th:replace="fragments :: nav" />
 
-<table th:object="${post}" class="table">
-    <h2 th:text="${post.user}">Parent User</h2>
-    <p th:text="${post.body}">Parent Body</p>
-    <a th:href="@{'/comments/add/' + ${post.id}}">Add Comment</a>
-</table>
-
-<div th:if="${relevantComments}">
-    <table th:each="comment : ${relevantComments}" class="table">
+<div class="col-lg-6">
+    <table th:object="${post}" class="table table-striped table-hover ">
         <tr>
-            <th th:text="${comment.user}"></th>
+            <th th:text="${post.user}">Parent User </th>
         </tr>
         <tr>
-            <td th:text="${comment.body}"></td>
+            <td th:text="${post.body}">Parent Body</td>
         </tr>
-</table>
+        <tr>
+            <td><a th:href="@{'/comments/add/' + ${post.id}}">Add Comment</a></td>
+        </tr>
+    </table>
+</div>
+
+<div class="col-lg-4">
+    <div th:if="${relevantComments}">
+        <table th:each="comment : ${relevantComments}" class="table table-striped table-hover ">
+            <tr>
+                <th th:text="${comment.user}"></th>
+            </tr>
+            <tr>
+                <td th:text="${comment.body}"></td>
+            </tr>
+        </table>
+    </div>
 </div>
 
 <div th:unless="${relevantComments}">
