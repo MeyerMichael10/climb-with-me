@@ -1,25 +1,36 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8"/>
-    <title></title>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head th:replace="fragments :: head">
 </head>
 <body>
 
-<form method="post" style="max-width:600px;" th:object="${partnerReq}" action="/newPartnerReq">
+<nav th:replace="fragments :: nav">Navbar</nav>
+
+<form method="post" style="max-width:600px;" th:object="${partnerReq}" action="/newPartnerReq" class="form-horizontal">
+
     <div class="form-group">
-        <label th:for="discipline">Preferred discipline:</label>
-        <input class="form-control" th:field="*{discipline}" />
-        <span th:errors="*{discipline}" class="error"></span>
+        <label class="col-lg-2 control-label" th:for="discipline">Preferred discipline:</label>
+        <div class="col-lg-6">
+            <select class="form-control" th:field="*{discipline}" id="discipline" />
+            <option th:value="'Free'" th:text="Free">1</option>
+            <option th:value="'Sport'" th:text="Sport">2</option>
+            <option th:value="'Trad'" th:text="Trad">3</option>
+            <option th:value="'Bouldering'" th:text="Bouldering">4</option>
+            <option th:value="'Aid'" th:text="Aid">5</option>
+            </select>
+            <span th:errors="*{discipline}" class="error" />
+        </div>
     </div>
 
     <div class="form-group">
-        <label th:for="city">City:</label>
-        <input class="form-control" th:field="*{city}" />
-        <span th:errors="*{city}" class="error"></span>
+        <label class="col-lg-2 control-label" th:for="city">City:</label>
+        <div class="col-lg-6">
+            <input class="form-control input-sm" th:field="*{city}" id="city" />
+            <span th:errors="*{city}" class="error"></span>
+        </div>
     </div>
 
-    <input type="submit" value="Add Partner Request" />
+    <input type="submit" class="btn btn-success" value="Add Partner Request" />
 </form>
 
 </body>

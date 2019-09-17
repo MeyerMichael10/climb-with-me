@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="head">
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title th:text="${title}">Climb-With-Me</title>
+
+    <link href="https://stackpath.bootstrapcdn.com/bootswatch/3.4.1/sandstone/bootstrap.min.css" rel="stylesheet" integrity="sha384-MdGHxjbrV2GoFVHadLhX6S9c4u3zfMCjYWiJCd1qukSKYr5/WblrjNve58VRoYg4" crossorigin="anonymous">
+    <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+</head>
+<body>
+
+<nav th:fragment="navigation" class="navbar-inverse">
+    <a th:unless="${user}" href="/login" class="btn btn-default">Log In/Sign Up</a>
+    <a th:if="${user}" href="/" class="btn btn-default">Home</a>
+    <a th:if="${user}" href="/newPost" class="btn btn-default">New Post</a>
+    <a th:if="${user}" href="/newPartnerReq" class="btn btn-default">New Partner Request</a>
+    <a th:if="${user}" href="/messages/view-all" class="btn btn-default">Messages</a>
+    <a th:if="${user}" href="https://dev-188996.okta.com/enduser/settings" class="btn btn-default">Edit Profile</a>
+    <a th:if="${user}" href="/logout" class="btn btn-default">Log Out</a>
+
+</nav>
+
+</body>
+</html>

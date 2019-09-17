@@ -48,13 +48,16 @@ public class BlogController{
     @RequestMapping(value = "newPost", method = RequestMethod.POST)
     public String newPost(@ModelAttribute @Valid Post newPost,
                           Errors errors, @AuthenticationPrincipal OidcUser user, Model model) {
-        newPost.setUser(user.getEmail());
+        newPost.setUser(user.getNickName());
 
         if (errors.hasErrors()) {
+
+            model.addAttribute("user", user);
             return "blog/newPost";
         }
 
         postDao.save(newPost);
+        model.addAttribute("user", user);
 
         return "redirect:/";
     }
@@ -70,13 +73,16 @@ public class BlogController{
     @RequestMapping(value = "newPartnerReq", method = RequestMethod.POST)
     public String newPartnerReq(@ModelAttribute @Valid PartnerReq newPartnerReq,
                           Errors errors, @AuthenticationPrincipal OidcUser user, Model model) {
-        newPartnerReq.setUser(user.getEmail());
+        newPartnerReq.setUser(user.getNickName());
+
 
         if (errors.hasErrors()) {
+            model.addAttribute("user", user);
             return "requests/newPartnerReq";
         }
 
         partnerReqDao.save(newPartnerReq);
+        model.addAttribute("user", user);
 
         return "redirect:/";
     }

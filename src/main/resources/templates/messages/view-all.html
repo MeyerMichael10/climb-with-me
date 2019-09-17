@@ -1,10 +1,9 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8"/>
-    <title></title>
+<head th:replace="fragments :: head">
 </head>
-<body>
+
+<nav th:replace="fragments :: nav">Navbar</nav>
 
 <a th:if="${user}" href="/messages/new">Send New Message</a>
 
